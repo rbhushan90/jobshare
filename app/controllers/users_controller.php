@@ -2,7 +2,25 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-
+	
+	//Add (Registrierung) kann auch ohne Login erfolgen
+	function beforeFilter(){
+		//übernimmt die Funktionen vom beforeFilter von app_controller.php
+		parent::beforeFilter();
+		//fügt zusätzliche beforeFilter dazu
+		$this->Auth->allow('add');
+	}
+	
+	//Login und Logout Funktion
+	function login(){
+		
+	}
+	
+	function logout(){
+		$this->redirect($this->Auth->logout());
+	}
+	
+	//CRUD Funktionen
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());

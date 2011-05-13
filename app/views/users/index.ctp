@@ -6,7 +6,7 @@
 			<th><?php echo $this->Paginator->sort('lastname');?></th>
 			<th><?php echo $this->Paginator->sort('surname');?></th>
 			<th><?php echo $this->Paginator->sort('username');?></th>
-			<th><?php echo $this->Paginator->sort('password');?></th>
+			<!-- <th><?php echo $this->Paginator->sort('password');?></th> -->
 			<th><?php echo $this->Paginator->sort('group_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -23,7 +23,7 @@
 		<td><?php echo $user['User']['lastname']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['surname']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['username']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
+		<!-- <td><?php echo $user['User']['password']; ?>&nbsp;</td> -->
 		<td>
 			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
 		</td>
@@ -52,10 +52,12 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
+		<?php if ($admin) :?>
 		<li><?php echo $this->Html->link(__('New User', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups', true), array('controller' => 'groups', 'action' => 'index')); ?> </li>
+		<?php endif; ?>	
+		<!-- <li><?php echo $this->Html->link(__('List Groups', true), array('controller' => 'groups', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Group', true), array('controller' => 'groups', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Mytasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Mytask', true), array('controller' => 'mytasks', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Mytask', true), array('controller' => 'mytasks', 'action' => 'add')); ?> </li> -->
 	</ul>
 </div>
