@@ -3,8 +3,9 @@ class AppController extends Controller {
 	var $components = array('Auth', 'Session');
 	
 	function beforeFilter(){
+		// $this->Auth->authorize = 'controller';
 		//Seiten definieren für Gäste
-		
+		$this->Auth->allow(array('display'));
 		
 		//Error Messages - kein Login - falsches Login
 		$this->Auth->authError = "Sie müssen sich Einlogen um diese Seite zu sehen";
@@ -12,7 +13,7 @@ class AppController extends Controller {
 		
 		//Redirect für Login und Logout (logout muss noch bearbeitet werden -> auf startseite)
 		$this->Auth->loginRedirect = array('controller' => 'mytasks', 'action' => 'index');
-		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
 		
 		//Setzen der Status Variablen
 		$this->set('admin', $this->_isAdmin());
@@ -33,7 +34,7 @@ class AppController extends Controller {
 	//Funktion: Gibt TRUE zurück wenn User mit Manager Berechtigung eingelogt ist
 	function _isManager(){
 		$manager = FALSE;
-		if ($this->Auth->user('group_id') == '1'){
+		if ($this->Auth->user('group_id') == '3'){
 			$manager = TRUE;
 		}
 		return $manager;

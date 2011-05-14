@@ -2,6 +2,26 @@
 class PriosController extends AppController {
 
 	var $name = 'Prios';
+	
+	function beforeFilter(){
+		$this->Auth->authorize = 'controller';
+
+		//übernimmt die Funktionen vom beforeFilter von app_controller.php
+		parent::beforeFilter();
+		//fügt zusätzliche beforeFilter dazu
+		$this->Auth->allow('add');
+	}
+	
+	//Definiert die Methoden für die Benutzer
+	function isAuthorized() {
+		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view'){
+			if ($this->Auth->user('group_id') == '2'){
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
 
 	function index() {
 		$this->Prio->recursive = 0;

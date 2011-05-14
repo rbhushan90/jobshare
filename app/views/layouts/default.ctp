@@ -51,23 +51,28 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<div class="actions">
-				<?php if ($admin || $manager || $logged_in) :?>
 				<h3><?php __('Navigation'); ?></h3>
 				<ul>
-					<?php if ($admin) :?>
-					<li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index'));?></li>
-					<li><?php echo $this->Html->link(__('List States', true), array('controller' => 'states', 'action' => 'index'));?></li>
-					<li><?php echo $this->Html->link(__('List Prios', true), array('controller' => 'prios', 'action' => 'index')); ?> </li>
-					 <?php endif; ?>
-					
-					<li><?php echo $this->Html->link(__('List Tasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>			
+					<li><?php echo $this->Html->link(__('Home', true), array('controller' => 'pages', 'action' => 'display', 'home'))?></li>
+					<?php if ($admin || $manager || $logged_in) :?>
+						
+						<?php if ($admin) :?>
+							<li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index'));?></li>
+							<li><?php echo $this->Html->link(__('List States', true), array('controller' => 'states', 'action' => 'index'));?></li>
+							<li><?php echo $this->Html->link(__('List Prios', true), array('controller' => 'prios', 'action' => 'index')); ?> </li>
+					 	<?php endif; ?>
+					<li><?php echo $this->Html->link(__('List Tasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>
+					</ul>
+					<?php else:?>
+						<ul>
+							<li><?php echo $html->link('Login', array('controller' => 'users', 'action' => 'login')); ?></li>
+					<?php endif; ?>
 				</ul>
-				<?php endif; ?>
 			</div>
 			
 			<div id="user_nav">
 				<?php if ($logged_in): ?>
-				Welcome to Jobshare. Logged in with: <?php echo $users_username; ?>(
+				Angemeldet mit: <?php echo $users_username; ?> (
 					<?php
 						if ($admin){
 							echo 'Administrator';
@@ -78,8 +83,8 @@
 						else {
 							echo 'User';
 						}
-					?>
-					), <?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'logout'), array(), 'Are you sure ?'); ?>
+					?>), 
+					<?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'logout'), array(), 'Are you sure ?'); ?>
 				<?php else: ?>
 					You are not logged in!
 				<?php echo $html->link('Register', array('controller' => 'users', 'action' => 'add')); ?>
