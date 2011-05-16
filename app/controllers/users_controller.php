@@ -24,6 +24,14 @@ class UsersController extends AppController {
 		}
 		
 		if ($this->action == 'index'){
+			if ($this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		if ($this->action == 'delete'){
 			if ($this->Auth->user('group_id') == '2'){
 				return true;
 			} else {

@@ -8,14 +8,12 @@ class PriosController extends AppController {
 
 		//übernimmt die Funktionen vom beforeFilter von app_controller.php
 		parent::beforeFilter();
-		//fügt zusätzliche beforeFilter dazu
-		$this->Auth->allow('add');
 	}
 	
 	//Definiert die Methoden für die Benutzer
 	function isAuthorized() {
 		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view'){
-			if ($this->Auth->user('group_id') == '2'){
+			if ($this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
 				return true;
 			} else {
 				return false;
@@ -23,6 +21,7 @@ class PriosController extends AppController {
 		}
 	}
 
+	//CRUD Funktionen
 	function index() {
 		$this->Prio->recursive = 0;
 		$this->set('prios', $this->paginate());

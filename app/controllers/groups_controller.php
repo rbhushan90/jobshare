@@ -2,7 +2,27 @@
 class GroupsController extends AppController {
 
 	var $name = 'Groups';
+	
+	function beforeFilter(){
+		$this->Auth->authorize = 'controller';
 
+		//übernimmt die Funktionen vom beforeFilter von app_controller.php
+		parent::beforeFilter();
+	}
+	
+	//Definiert die Methoden für die Benutzer
+	function isAuthorized() {
+		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view'){
+			if ($this->Auth->user('group_id') == '2'){
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+
+	//CRUD Funktionen
 	function index() {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->paginate());

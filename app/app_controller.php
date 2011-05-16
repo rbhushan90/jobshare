@@ -20,6 +20,8 @@ class AppController extends Controller {
 		$this->set('logged_in', $this->_loggedIn());
 		$this->set('users_username', $this->_usersUsername());
 		$this->set('manager', $this->_isManager());
+		$this->set('guest', $this->_isGuest());
+		$this->set('user', $this->_isUser());
 	}
 	
 	//Funktion: Gibt TRUE zurück wenn User mit Admin Berechtigung eingelogt ist
@@ -38,6 +40,24 @@ class AppController extends Controller {
 			$manager = TRUE;
 		}
 		return $manager;
+	}
+	
+	//Funktion: Gibt TRUE zurück wenn User mit User Berechtigung eingelogt ist
+	function _isUser(){
+		$user = FALSE;
+		if ($this->Auth->user('group_id') == '1'){
+			$user = TRUE;
+		}
+		return $user;
+	}
+	
+	//Funktion: Gibt TRUE zurück wenn User mit Guest Berechtigung eingelogt ist
+	function _isGuest(){
+		$guest = FALSE;
+		if ($this->Auth->user('group_id') == '4'){
+			$guest = TRUE;
+		}
+		return $guest;
 	}
 	
 	//Funktion: Gibt TRUE zurück wenn User eingelogt

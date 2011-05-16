@@ -54,14 +54,15 @@
 				<h3><?php __('Navigation'); ?></h3>
 				<ul>
 					<li><?php echo $this->Html->link(__('Home', true), array('controller' => 'pages', 'action' => 'display', 'home'))?></li>
-					<?php if ($admin || $manager || $logged_in) :?>
-						
-						<?php if ($admin) :?>
-							<li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index'));?></li>
-							<li><?php echo $this->Html->link(__('List States', true), array('controller' => 'states', 'action' => 'index'));?></li>
-							<li><?php echo $this->Html->link(__('List Prios', true), array('controller' => 'prios', 'action' => 'index')); ?> </li>
+					<?php if ($admin || $manager || $user) :?>
+						<li><?php echo $this->Html->link(__('Alle Tasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>
+						<li><?php echo $this->Html->link(__('Offene Tasks', true), array('controller' => 'mytasks', 'action' => 'indexopen')); ?> </li>
+						<?php if ($admin || $manager) :?>
+							<h3><?php __('Administration'); ?></h3>
+							<li><?php echo $this->Html->link(__('Benutzer', true), array('controller' => 'users', 'action' => 'index'));?></li>
+							<li><?php echo $this->Html->link(__('Status', true), array('controller' => 'states', 'action' => 'index'));?></li>
+							<li><?php echo $this->Html->link(__('Prioritäten', true), array('controller' => 'prios', 'action' => 'index')); ?> </li>
 					 	<?php endif; ?>
-					<li><?php echo $this->Html->link(__('List Tasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>
 					</ul>
 					<?php else:?>
 						<ul>
@@ -72,16 +73,19 @@
 			
 			<div id="user_nav">
 				<?php if ($logged_in): ?>
-				Angemeldet mit: <?php echo $users_username; ?> (
+				Angemeldet mit: <?php echo "<b>" . $users_username . "</b>"; ?>
 					<?php
 						if ($admin){
-							echo 'Administrator';
+							echo '(Administrator';
 						}
 						elseif ($manager){
-							echo 'Manager';
+							echo '(Manager';
 						}
-						else {
-							echo 'User';
+						elseif ($guest){
+							echo '(Gast';
+						}
+						elseif ($user){
+							echo '(User';
 						}
 					?>), 
 					<?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'logout'), array(), 'Are you sure ?'); ?>

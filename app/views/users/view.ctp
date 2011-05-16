@@ -49,7 +49,7 @@
 	</ul>
 </div>
 <div class="related">
-	<h3><?php __('Related Mytasks');?></h3>
+	<h3><?php __('Related Tasks');?></h3>
 	<?php if (!empty($user['Mytask'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -92,7 +92,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Mytask', true), array('controller' => 'mytasks', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('Task hinzufügen', true), array('controller' => 'mytasks', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

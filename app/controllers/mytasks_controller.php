@@ -2,11 +2,43 @@
 class MytasksController extends AppController {
 
 	var $name = 'Mytasks';
+	
+	function beforeFilter(){
+		$this->Auth->authorize = 'controller';
 
+		//übernimmt die Funktionen vom beforeFilter von app_controller.php
+		parent::beforeFilter();
+	}
+	
+	//Definiert die Methoden für die Benutzer
+	function isAuthorized() {
+		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view' || $this->action == 'indexopen'){
+			if ($this->Auth->user('group_id') == '1' || $this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		if ($this->action == 'delete'){
+			if ($this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	//CRUD Funktionen
+	
 	function index() {
 		$this->Mytask->recursive = 0;
 		$this->set('mytasks', $this->paginate());
 	}
+	
+	function indexopen() {
+		$this->set('mytasks', $this->Mytask->findAllByStateId('1'), $this->paginate());		
+			}
 
 	function view($id = null) {
 		if (!$id) {

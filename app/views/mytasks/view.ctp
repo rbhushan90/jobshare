@@ -46,10 +46,10 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Mytask', true), array('action' => 'edit', $mytask['Mytask']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Mytask', true), array('action' => 'delete', $mytask['Mytask']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mytask['Mytask']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Mytasks', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Mytask', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Task bearbeiten', true), array('action' => 'edit', $mytask['Mytask']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Task löschen', true), array('action' => 'delete', $mytask['Mytask']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mytask['Mytask']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Alle Tasks anzeigen', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Task hinzufügen', true), array('action' => 'add')); ?> </li>
 		<!-- <li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Prios', true), array('controller' => 'prios', 'action' => 'index')); ?> </li>

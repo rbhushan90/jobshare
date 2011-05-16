@@ -7,7 +7,7 @@
 		echo $this->Form->input('lastname');
 		echo $this->Form->input('surname');
 		echo $this->Form->input('username');
-		echo $this->Form->input('password');
+		//echo $this->Form->input('password');
 		echo $this->Form->input('group_id');
 	?>
 	</fieldset>

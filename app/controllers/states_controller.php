@@ -13,7 +13,7 @@ class StatesController extends AppController {
 	//Definiert die Methoden für die Benutzer
 	function isAuthorized() {
 		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view'){
-			if ($this->Auth->user('group_id') == '2'){
+			if ($this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
 				return true;
 			} else {
 				return false;
@@ -21,6 +21,7 @@ class StatesController extends AppController {
 		}
 	}
 
+	//CRUD Funktionen
 	function index() {
 		$this->State->recursive = 0;
 		$this->set('states', $this->paginate());

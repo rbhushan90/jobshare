@@ -2,7 +2,7 @@
 <?php echo $this->Form->create('User');?>
 	<fieldset>
 		<legend><?php __('Registrieren'); ?></legend>
-		Ihr Benutzer muss nach der Registrierung zuerst von einem Administrator freigeschaltet werden.
+		Ihr Benutzer muss nach der Registrierung zuerst von einem Manager oder Administrator freigeschaltet werden.
 		<?php echo $session->flash('auth'); ?>
 	<?php
 		echo $this->Form->input('lastname', array('label' => 'Nachname'));
