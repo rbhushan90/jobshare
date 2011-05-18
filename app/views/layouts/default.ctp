@@ -57,6 +57,8 @@
 					<?php if ($admin || $manager || $user) :?>
 						<li><?php echo $this->Html->link(__('Alle Tasks', true), array('controller' => 'mytasks', 'action' => 'index')); ?> </li>
 						<li><?php echo $this->Html->link(__('Offene Tasks', true), array('controller' => 'mytasks', 'action' => 'indexopen')); ?> </li>
+						<li><?php echo $this->Html->link(__('Meine Tasks', true), array('controller' => 'mytasks', 'action' => 'indexmy')); ?> </li>
+						<li><?php echo $this->Html->link(__('Geschlossene Tasks', true), array('controller' => 'mytasks', 'action' => 'indexclosed')); ?> </li>
 						<?php if ($admin || $manager) :?>
 							<h3><?php __('Administration'); ?></h3>
 							<li><?php echo $this->Html->link(__('Benutzer', true), array('controller' => 'users', 'action' => 'index'));?></li>

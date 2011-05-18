@@ -7,12 +7,12 @@
 		if ($admin || $manager):
 		echo $this->Form->input('user_id');
 		endif;
-		echo $this->Form->input('title');
-		echo $this->Form->input('text');
-		echo $this->Form->input('date');
-		echo $this->Form->input('duedate');
-		echo $this->Form->input('prio_id');
-		echo $this->Form->input('state_id');
+		echo $this->Form->input('title', array('label' => 'Titel: '));
+		echo $this->Form->input('text', array('label' => 'Details: '));
+		//echo $this->Form->input('date', array('label' => 'Eröffnet am: '));
+		echo $this->Form->input('duedate', array('label' => 'Erledigen bis: '));
+		echo $this->Form->input('prio_id', array('label' => 'Priorität: ', 'default' => '2'));
+		echo $this->Form->input('state_id', array('label' => 'Status: '));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

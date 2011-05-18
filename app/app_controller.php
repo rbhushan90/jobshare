@@ -22,6 +22,7 @@ class AppController extends Controller {
 		$this->set('manager', $this->_isManager());
 		$this->set('guest', $this->_isGuest());
 		$this->set('user', $this->_isUser());
+		$this->set('users_id', $this->_usersUserId());
 	}
 	
 	//Funktion: Gibt TRUE zurück wenn User mit Admin Berechtigung eingelogt ist
@@ -76,6 +77,15 @@ class AppController extends Controller {
 			$users_username = $this->Auth->user('username');
 		}
 		return $users_username;
+	}
+	
+	//Funktion: gibt UserID zurück
+	function _usersUserId(){
+		$users_id = NULL;
+		if ($this->Auth->user()){
+			$users_id = $this->Auth->user('id');
+		}
+		return $users_id;
 	}
 	
 }

@@ -12,7 +12,7 @@ class MytasksController extends AppController {
 	
 	//Definiert die Methoden für die Benutzer
 	function isAuthorized() {
-		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view' || $this->action == 'indexopen'){
+		if ($this->action == 'index' || $this->action == 'add' || $this->action == 'edit' || $this->action == 'view' || $this->action == 'indexopen' || $this->action == 'indexmy' || $this->action == 'indexclosed'){
 			if ($this->Auth->user('group_id') == '1' || $this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
 				return true;
 			} else {
@@ -29,16 +29,26 @@ class MytasksController extends AppController {
 		}
 	}
 	
-	//CRUD Funktionen
+	//Funktionen
+	function indexopen() {
+		$this->set('mytasks', $this->Mytask->findAllByStateId('1'), $this->paginate());
+		//$this->render('index');		
+	}
 	
+	function indexmy() {
+		$this->set('mytasks', $this->Mytask->findAllByUserId("$users_id"), $this->paginate());
+		//$this->render('index');
+	}		
+	
+	function indexclosed() {
+		$this->set('mytasks', $this->Mytask->findAllByStateId('2'), $this->paginate());
+	}
+	
+	//CRUD Funktionen
 	function index() {
 		$this->Mytask->recursive = 0;
 		$this->set('mytasks', $this->paginate());
 	}
-	
-	function indexopen() {
-		$this->set('mytasks', $this->Mytask->findAllByStateId('1'), $this->paginate());		
-			}
 
 	function view($id = null) {
 		if (!$id) {

@@ -19,11 +19,11 @@ class UsersController extends AppController {
 			return true;
 		}
 		
-		if ($this->action == 'view' || $this->action == 'edit'){
+		if ($this->action == 'view'){
 			return true;
 		}
 		
-		if ($this->action == 'index'){
+		if ($this->action == 'index' || $this->action == 'edit'){
 			if ($this->Auth->user('group_id') == '2' || $this->Auth->user('group_id') == '3'){
 				return true;
 			} else {

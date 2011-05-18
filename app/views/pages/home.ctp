@@ -8,7 +8,7 @@
 		<?php elseif ($guest): ?>
 			<?php echo "<br><br>Du bist als Gast angemeldet. Ein Administrator oder Manager muss deinen Account freischalten."?>
 		<?php else: ?>
-			<?php echo '<br><br>Next Steps:<br>Alle Tasks: Anzeige sämtlicher Tasks<br>Offene Tasks: Anzeige sämtlicher Tasks die zur Zeit offen sind' ?>
+			<?php echo '<br><br>Next Steps:<br>Alle Tasks: Anzeige sämtlicher Tasks<br>Offene Tasks: Anzeige sämtlicher Tasks die zur Zeit offen sind<br>Meine Tasks: Anzeige der Tasks die ich geöffnet habe' ?>
 		<?php endif;?>
 		</fieldset>
 </div>
